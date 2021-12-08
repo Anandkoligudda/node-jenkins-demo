@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     def dockerImage = docker.build("anandkoligudda/node-demo:master")
-                    docker.withRegistry('', 'node-demo') {
+                    docker.withRegistry('', 'docker') {
                         dockerImage.push('master')
                     }
                 }
