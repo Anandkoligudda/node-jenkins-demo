@@ -14,5 +14,16 @@ pipeline {
 //                 }
             }
         }
+	stage('Build and push docker image') {
+            steps {
+                script {
+                    def dockerImage = docker.build("anandkoligudda/node-demo:master")
+                    docker.withRegistry('', 'node-demo') {
+                        dockerImage.push('master')
+                    }
+                }
+            }
+        }
+
     }
 }
